@@ -4,7 +4,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  /* color-scheme: dark; */
+  color-scheme: light;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -17,4 +17,14 @@
 
 * {
   font-family: 'Roboto', sans-serif, Arial, Helvetica;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; 
+  scroll-behavior: smooth;
 }
