@@ -28,3 +28,25 @@
           user-select: none; 
   scroll-behavior: smooth;
 }
+
+html {
+  font-size: calc(15px + 0.390625vw);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
