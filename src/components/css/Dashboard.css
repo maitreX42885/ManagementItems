@@ -32,7 +32,8 @@
     align-items: center;
     /* border: 1px solid red; */
     font-size: 1.3rem;
-    background-color: #d04545;
+    color: var(--colorDark1);
+    background-color: var(--colorFont);
     border-radius: 6px;
     transition: all 300ms ease-in-out;
 }
