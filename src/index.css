@@ -4,7 +4,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light;
+  /* color-scheme: light; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,6 +13,17 @@
   -webkit-text-size-adjust: 100%;
 
   --colorDarkModeBtn: #1a1a1a;
+
+
+
+  --colorFont: #1a1a1a;
+  --colorDark1: #f2f2f2;
+  --colorDark2: #f4f4f4;
+  --colorDark3: #f6f6f6;
+
+  --colorDark13: #161b22;
+  --colorDark23: #30363d;
+  --colorDark33: #0d1117;
 }
 
 * {

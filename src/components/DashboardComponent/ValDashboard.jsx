@@ -13,7 +13,7 @@ export const DashProvider = ({ children }) => {
 
     const funSetBtn = {
         btn,
-        setBtn
+        setPageBtn
     }
 
     return (

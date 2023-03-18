@@ -3,7 +3,7 @@ import './css/Lend.css'
 
 function Lend() {
   return (
-    <div>Lend</div>
+    <div className='lend'>Lend</div>
   )
 }
 
