@@ -12,6 +12,9 @@ import { DashContext } from './DashboardComponent/ValDashboard';
 
 const DashLend = React.lazy(() => import('./DashboardComponent/Lend'));
 const DashReturn = React.lazy(() => import('./DashboardComponent/Return'));
+const DashTool = React.lazy(() => import('./DashboardComponent/Tool'));
+const DashHistory = React.lazy(() => import('./DashboardComponent/HistoryTool'));
+const DashContact = React.lazy(() => import('./DashboardComponent/Contact'));
 
 function Dashboard() {
 
@@ -36,14 +39,16 @@ function Dashboard() {
       localStorage.setItem("theme", "light")
       document.documentElement.style.setProperty('--colorFont', '#1a1a1a')
       document.documentElement.style.setProperty('--colorDark1', '#f2f2f2')
-      document.documentElement.style.setProperty('--colorDark2', '#f4f4f4')
-      document.documentElement.style.setProperty('--colorDark3', '#f6f6f6')
+      document.documentElement.style.setProperty('--colorDark2', '#c0c0c0')
+      document.documentElement.style.setProperty('--colorDark3', '#dadada')
+      document.documentElement.style.setProperty('--shadow', 'rgba(0, 0, 0, 0.35) 0px 5px 25px')
     }else {
       localStorage.setItem("theme", "dark")
       document.documentElement.style.setProperty('--colorFont', '#fff')
       document.documentElement.style.setProperty('--colorDark1', '#161b22')
       document.documentElement.style.setProperty('--colorDark2', '#30363d')
       document.documentElement.style.setProperty('--colorDark3', '#0d1117')
+      document.documentElement.style.setProperty('--shadow', 'rgba(255, 255, 255, 0.35) 0px 5px 25px')
     }
   }, [night])
 
@@ -103,11 +108,9 @@ function Dashboard() {
     allBtn.forEach(element => {
       element.classList.remove('btnDash-active')
     });
-    // console.log(e.target.id)
     document.getElementById('mobile-item-container').style.display = 'none'
     document.getElementById(e.target.id).classList.add('btnDash-active')
     setPageBtn(parseInt(e.target.id))
-    // console.log(e.target.id)
     setHam(!ham)
   }
 
@@ -133,13 +136,12 @@ function Dashboard() {
             <h4>Quick Access</h4>
             <div className="dash-tool-items btnDash-active" id='0' onClick={menuClick}><BiHomeAlt />&nbsp; ยืม</div>
             <div className="dash-tool-items" id='1' onClick={menuClick}><HiReceiptRefund />&nbsp; คืน</div>
-            {/* <div className="dash-tool-items" id='2' onClick={menuClick}><BiBox/>&nbsp; สมาชิก</div> */}
-            <div className="dash-tool-items" id='3' onClick={menuClick}><FiBox/>&nbsp; อุปกรณ์</div>
+            <div className="dash-tool-items" id='2' onClick={menuClick}><FiBox/>&nbsp; อุปกรณ์</div>
           </div>
           <div className="dash-tool-container">
             <h4>Other</h4>
-            <div className="dash-tool-items" id='8' onClick={menuClick}><BiHistory/>&nbsp; ประวัติการยืม-คืน</div>
-            <div className="dash-tool-items" id='6' onClick={menuClick}><IoMdContact />&nbsp; ติดต่อเรา</div>
+            <div className="dash-tool-items" id='3' onClick={menuClick}><BiHistory/>&nbsp; ประวัติการยืม-คืน</div>
+            <div className="dash-tool-items" id='4' onClick={menuClick}><IoMdContact />&nbsp; ติดต่อเรา</div>
           </div>
         </div>
         <div className="dash-content">
@@ -153,13 +155,12 @@ function Dashboard() {
                   <h4>Quick Access</h4>
                   <div className="items-mobile-items" id='0' onClick={menuClick}><BiHomeAlt />&nbsp; ยืม</div>
                   <div className="items-mobile-items" id='1' onClick={menuClick}><HiReceiptRefund />&nbsp; คืน</div>
-                  <div className="items-mobile-items" id='3' onClick={menuClick}><FiBox />&nbsp; อุปกรณ์</div>
+                  <div className="items-mobile-items" id='2' onClick={menuClick}><FiBox />&nbsp; อุปกรณ์</div>
                 </div>
                 <div className="item-mobile-container">
                   <h4>Other</h4>
-                  {/* <div className="items-mobile-items" id='6' onClick={menuClick}><FiBox/>&nbsp; เพิ่มอุปกรณ์</div> */}
-                  <div className="items-mobile-items" id='8' onClick={menuClick}><BiHistory/>&nbsp; ประวัติการยืม-คืน</div>
-                  <div className="items-mobile-items" id='6' onClick={menuClick}><IoMdContact />&nbsp; ติดต่อเรา</div>
+                  <div className="items-mobile-items" id='3' onClick={menuClick}><BiHistory/>&nbsp; ประวัติการยืม-คืน</div>
+                  <div className="items-mobile-items" id='4' onClick={menuClick}><IoMdContact />&nbsp; ติดต่อเรา</div>
                 </div>
               </div>
             </div>
@@ -169,6 +170,9 @@ function Dashboard() {
               {
                 (btn === 0) ? (<DashLend />)
                 : (btn === 1) ? (<DashReturn />)
+                : (btn === 2) ? (<DashTool />)
+                : (btn === 3) ? (<DashHistory />)
+                : (btn === 4) ? (<DashContact />)
                 : ""
               }
               
