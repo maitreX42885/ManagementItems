@@ -1,0 +1,127 @@
+
+
+
+
+
+.tool-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+    border-bottom: 1px solid var(--colorFont);
+}
+
+
+.tool-title {
+    color: var(--colorFont);
+}
+
+
+
+
+
+
+.tool-search-container {
+    display: flex;
+  
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+    /* background-color: var(--colorDark1); */
+    border-radius: 5px;
+}
+.tool-search-container > svg {
+    margin-left: .3rem;
+    display: none;
+    color: var(--colorFont);
+}
+
+#tool-search {
+    width: 10rem;
+    outline: none;
+    height: 100%;
+    padding-left: .25rem;
+    transition: all 200ms ease-in-out;
+    border-radius: 5px;
+    border: 1px solid #b6b6b6;
+}
+#tool-search:focus {
+    border: 1px solid var(--colorFont);
+}
+
+#tool-search:focus ~ svg {
+    display: block;
+    
+}
+
+
+.tool-search-container > input[type='button'] {
+    margin-right: .5rem;
+    height: 100%;
+    width: 2rem;
+    color: #fff;
+    background-color: var(--colorSuccess);
+    border-radius: 8px;
+    border: transparent;
+    font-size: 1.2rem;
+    transition: all 200ms ease-in-out;
+}
+.tool-search-container > input[type='button']:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+}
+/* #tool-search::-webkit-search-cancel-button {
+    color: var(--colorFont);
+
+   
+  
+} */
+
+
+/* tool-content */
+
+.tool-content {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+
+
+td, tr, th {
+    background-color: var(--colorDark1);
+    border: 1px solid var(--colorFont);
+    color: var(--colorFont);
+}
+td {
+    text-align: center;
+}
+
+.tool-content > table {
+    width: 100%;
+    border-collapse: collapse;
+   
+}
+
+td > button:hover {
+    cursor: pointer;
+}
+/* tool-content */
+
+
+
+/* tool-load */
+
+.tool-load {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000005;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    
+}
+
+
+/* tool-load */

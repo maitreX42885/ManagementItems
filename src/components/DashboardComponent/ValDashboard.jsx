@@ -22,3 +22,23 @@ export const DashProvider = ({ children }) => {
         </DashContext.Provider>
     )
 }
+
+export const AddToolContext = React.createContext()
+
+export const AddToolProvider = ({ children }) => {
+    const [forms , setForm] = useState(0)
+
+    function setPageForm(val) {
+        setForm(val)
+    }
+
+    const funSetForm = {
+        forms,
+        setPageForm
+    }
+    return (
+        <AddToolContext.Provider value={funSetForm}>
+            { children }
+        </AddToolContext.Provider>
+    )
+}

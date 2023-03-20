@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { Route, Routes } from 'react-router-dom';
-import { DashProvider } from './components/DashboardComponent/ValDashboard'
+import { AddToolProvider, DashProvider } from './components/DashboardComponent/ValDashboard'
 
 
 import Dashboard from './components/Dashboard'
@@ -14,13 +14,15 @@ function App() {
   return (
     <div className="App">
       <DashProvider>
-        <Routes>
-          <Route path='/' element={<Dashboard />} />
-          {/* <Route path='/login' element={<Login />}/>
-          <Route path='/register' element={<Register />}/> */}
-          {/* <Route path='/dashboard' element={<DashBoard />}/> */}
-          <Route path='*' element={<NotFound />}/>
-        </Routes>
+        <AddToolProvider>
+          <Routes>
+            <Route path='/' element={<Dashboard />} />
+            {/* <Route path='/login' element={<Login />}/>
+            <Route path='/register' element={<Register />}/> */}
+            {/* <Route path='/dashboard' element={<DashBoard />}/> */}
+            <Route path='*' element={<NotFound />}/>
+          </Routes>
+        </AddToolProvider>
       </DashProvider>
       
     </div>

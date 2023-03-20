@@ -225,8 +225,12 @@
     padding-right: 1rem;
     padding-top: 1rem;
     /* font-size: 1.5rem; */
+    color: var(--colorFont);
     
 }
+/* .close-mobile > svg {
+    color: red;
+} */
 .close-mobile:hover {
     cursor: pointer;
 }
