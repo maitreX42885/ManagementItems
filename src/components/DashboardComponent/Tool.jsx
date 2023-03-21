@@ -11,12 +11,12 @@ function Tool() {
   const data = []
   const [loadStatus, setLoadStatus] = useState(true)
   const [search, setSearch] = useState('')
-  const [allData, setAllData] = useState([])
+  const [allData, setAllData] = useState([{'toolID':"123"}])
   
   const { forms, setPageForm } = useContext(AddToolContext)
 
   useEffect(() => {
-    setLoadStatus(true)
+    setLoadStatus(false)
     async function f() {
       const a = await fetch('./back-end/connect/tool.php')
       const b = await a.json()
@@ -24,7 +24,7 @@ function Tool() {
         data.push(element)
       });
       setAllData(data)
-      createTable(data)
+      createTable(allData)
       setLoadStatus(false)
     }
     f()
