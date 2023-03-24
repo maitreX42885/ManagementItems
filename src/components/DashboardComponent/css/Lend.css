@@ -1,3 +1,224 @@
 .lend {
-    background-color: var(--colorDark2);
+    background-color: var(--colorDark3);
+    display: flex;
+    flex-direction: column;
+    color: var(--colorFont);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+
+/* header */
+
+.l-header {
+    position: sticky;
+    margin-top: 1rem;
+    background-color: var(--colorDark1);
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    top: 3rem;
+    z-index: 9;
+}
+
+.l-header-title, .l-header-tool, .l-header-tool > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.l-header-tool > div:nth-child(2) {
+    font-size: 1.4rem; 
+    position: relative;
+}
+.l-header-tool > div:nth-child(2):hover {
+    cursor: pointer;
+    animation: cart 1s ease-in-out infinite;
+    filter: brightness(90%);
+}
+@keyframes cart {
+    0% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(15deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(-15deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}
+
+
+.l-header-search > input[type='search'] {
+    outline: none;
+    border-radius: 3px;
+    border: transparent;
+    padding-left: .5rem;
+    height: 1.3rem;
+    width: 50%;
+    margin-right: .5rem;
+    background-color: var(--colorDark1);
+    transition: all 200ms ease-in-out;
+    color: var(--colorDark1);
+}
+.l-header-search > input[type='search']:focus,
+    .l-header-search > input[type='search']:valid {
+    background-color: var(--colorFont);
+    width: 100%;
+}
+
+#lnum {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    border-radius: 100px;
+    width: 1.2rem;
+    background-color:#dc143c;
+    font-size: small;
+    top: -10px;
+    right: -14px;
+    z-index: 0;
+    color: #fff;
+}
+/* header */
+
+
+/* content */
+
+.l-container {
+    /* margin-top: 1.5rem; */
+    background-color: var(--colorDark1);
+    padding: 2rem;
+    display: grid;
+    width: 100%;
+    height: 100vh;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    grid-gap: 20px;
+    justify-items: center;
+    align-content: center;
+    position: relative;
+}
+
+.l-items {
+    position: relative;
+    width: 10rem;
+    height: auto;
+    background-color: var(--colorDark1);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    border: 3px solid var(--colorFont);
+}
+.l-p, .l-img, .l-des, .l-toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.l-p {
+    color: var(--colorFont);
+}
+.l-img {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 8rem;
+}
+.l-img > img {
+    width: 100%;
+    background-size: cover;
+    object-fit: cover;
+    
+}
+.l-des {
+    position: absolute;
+    bottom: 0;
+    height: 0;
+    opacity: 0;
+    width: 100%;
+    font-size: .85rem;
+    overflow-x: scroll;
+    color: #fff;
+    transition: all 300ms ease-in-out;
+    background-color: #5b5b5bac;
+}
+.l-img:hover > .l-des {
+    height: 100%;
+    opacity: 1;
+    
+}
+.l-num {
+    width: 100%;
+    text-align: center;
+    font-size: .75rem;
+}
+.l-toolbar > button {
+    width: 3rem;
+    height: 1.65rem;
+    margin: .3rem;
+    border-radius: 5px;
+    border: transparent;
+    
+    color: #fff;
+}
+#l-btn-t {
+    background-color: var(--colorSuccess);
+}
+#l-btn-f {
+    background-color: var(--colorDanger);
+}
+
+.l-toolbar > button:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+}
+/* content */
+
+
+
+
+
+
+
+
+
+/* form lend */
+
+.form-lend {
+    position: absolute;
+    width: 100%;
+    right: 0;
+    /* height: 100%; */
+    /* height: 100rem; */
+    background-color: rgba(0, 0, 0, 0.842);
+    z-index: 1;
+    animation: Clend 400ms ease-in-out;
+}
+@keyframes Clend {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* form lend */
+
+
+
+.l-loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
 }

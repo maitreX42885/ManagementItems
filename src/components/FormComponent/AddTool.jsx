@@ -1,26 +1,82 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { AddToolContext } from '../DashboardComponent/ValDashboard'
 import './css/addTool.css'
 import { MdClose } from 'react-icons/md'
-
+import { BsClipboardPlus } from 'react-icons/bs'
+import Loading from '../Loading'
 
 function AddTool() {
 
+  const [loading, setLoading] = useState(false)
   const { forms, setPageForm } = useContext(AddToolContext)
 
   const handleCloseAddTool = () => {
     setPageForm(0)
   }
 
+  const submitAddTool = () => {
+    setLoading(true)
+    const id = document.getElementsByName('id')[0].value
+    const name = document.getElementsByName('name')[0].value
+    const Des = document.getElementsByName('Des')[0].value
+    const count = document.getElementsByName('count')[0].value
+    const file = document.getElementById('file_addTool').files[0]
+    
+    if (id != "" && name != "" && Des != "" && count != "" && file != undefined) {
+
+      let xhr = new XMLHttpRequest();
+      let url = "./back-end/connect/addTool.php";
+      let formData = new FormData();
+
+      formData.append("file", file);
+      formData.append("id", id);
+      formData.append("name", name);
+      formData.append("Des", Des);
+      formData.append("count", count);
+
+      xhr.open("POST", url, true);
+      xhr.onreadystatechange = function() {
+       
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          let x = xhr.responseText
+            if (x == "id") {
+              alert('มี ID นี้อยู่ในระบบแล้ว')
+            }
+            if (x == "type") {
+              alert('ต้องเป็นไฟล์รูปภาพ .png, .jpeg, .jpg เท่านั้น')
+            }
+            if (x == "large") {
+              alert('รูปต้องมีขนาดน้อยกว่า 1MB.')
+            }
+            if (x == "ok") {
+              alert('เพิ่มอุปกรณ์สำเร็จ')
+              setLoading(false)
+              setPageForm(0)
+            }else {
+              // console.log(x)
+            }
+            setLoading(false)
+        } else {
+          console.log(x.responseText)
+        }
+        
+      };
+      xhr.send(formData);
+    }else {
+      alert('กรุณากรอกข้อมูลให้ครบก่อนยืนยัน')
+    }
+  }
+
   return (
     <div>
       <div className="addTool-container">
+        {(loading) ? (<div className="l-addTool"><Loading/></div>) : ""}
         <div className="addtool-close" >
           <div onClick={handleCloseAddTool}><MdClose /></div>
         </div>
         <div className="addtool-header">เพิ่มอุปกรณ์</div>
         <div className="addtool-content">
-          <form action="./back-end/connect/addTool.php" method="post" id='form-addtool' enctype="multipart/form-data">
+          <form action="#" method="post" id='form-addtool'>
             <div className="items-addtool">
               <input type="text" name="id" id="inputAddTool" required/>
               <label htmlFor="">ID</label>
@@ -36,10 +92,11 @@ function AddTool() {
               <input type="number" name="count" id="" required placeholder='จำนวน'/>
             </div>
             <div className="items-addtool">
-              <input type="file" name="file" id="file" required/>
+              <p>*ต้องเป็นไฟล์รูปภาพ .png, .jpeg, .jpg เท่านั้น และ ขนาดไฟล์น้อยกว่า 1MB.</p>
+              <input type="file" name="file" id="file_addTool" required/>
             </div>
             <div className="items-addtool">
-              <input type="submit" value="ยืนยัน" name='submit'/>
+              <input type="button" value="ยืนยัน" name='submit'onClick={submitAddTool}/>
               <input type="reset" value="เคลียร์" />
             </div>
           </form>

@@ -1,0 +1,114 @@
+/* send file pass get method */
+
+.photoedit-container {
+    position: relative;
+    width: 100%;
+    height: 15rem;
+    background-color: var(--colorDark1);
+    color: var(--colorFont);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    animation: phoedit 450ms ease-in-out;
+}
+@keyframes phoedit {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.photoedit-close {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 5rem;
+    padding-top: 1rem;
+    
+}
+
+
+
+/* header */
+.photoedit-header {
+    margin: 1rem auto;
+}
+.photoedit-header, .photoedit-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* header */
+
+
+
+/* content */
+
+.photoedit-content {
+    padding-top: 1rem;
+    flex-direction: column;
+}
+
+.items-photoedit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.items-photoedit > p {
+    font-size: .65rem;
+    font-style: italic;
+    color: #ff0000;
+}
+
+.items-photoedit > input[type='button'] {
+    background-color: var(--colorSuccess);
+    color: #fff;
+    border: transparent;
+    border-radius: 6px;
+    width: 3rem;
+    height: 1.5rem;
+    transition: all 200ms ease-in-out;
+}
+.items-photoedit > input[type='button']:hover {
+    filter: brightness(90%);
+    cursor: pointer;
+}
+/* content */
+
+
+
+
+
+
+
+
+
+
+.photoedit-close > div:hover {
+    cursor: pointer;
+}
+
+
+.l-editphoto {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    background-color: #00000005;
+}
+
+/* d */

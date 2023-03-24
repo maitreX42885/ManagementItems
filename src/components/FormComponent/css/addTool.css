@@ -8,6 +8,7 @@
     align-items: center;
     animation: addTool 500ms ease-in-out;
     flex-direction: column;
+    position: relative;
 }
 @keyframes addTool {
     from {
@@ -24,6 +25,7 @@
     display: flex;
     flex-direction: column;
     padding-top: 1rem;
+    
 }
 
 .items-addtool {
@@ -59,7 +61,11 @@
         font-size: .75rem;
        
 }
-
+.items-addtool > p {
+    font-size: .65rem;
+    font-style: italic;
+    color: #ff0000;
+}
 .items-addtool > textarea {
     outline: none;
     width: 100%;
@@ -80,7 +86,7 @@
     width: 100%;
 } 
 
-.items-addtool > input[type='submit'], .items-addtool > input[type='reset'] {
+.items-addtool > input[type='button'], .items-addtool > input[type='reset'] {
     width: 3.5rem;
     height: 1.5rem;
     background-color: var(--colorSuccess);
@@ -91,7 +97,7 @@
 .items-addtool > input[type='reset'] {
     background-color: var(--colorDanger);
 }
-.items-addtool > input[type='submit']:hover, .items-addtool > input[type='reset']:hover {
+.items-addtool > input[type='button']:hover, .items-addtool > input[type='reset']:hover {
     cursor: pointer;
     filter: brightness(90%);
 }
@@ -121,4 +127,14 @@
 }
 .addtool-close > div:hover {
     cursor: pointer;
+}
+
+
+
+.l-addTool {
+    position: absolute;
+    z-index: 9;
+    width: 100%;
+    height: 100%;
+
 }

@@ -27,6 +27,8 @@
 
   --colorSuccess:#28a745;
   --colorDanger: #dc3545;
+  --colorInfo:#007bff;
+  --colorWarning: #ffc107;
   --shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 

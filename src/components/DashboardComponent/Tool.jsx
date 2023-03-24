@@ -5,31 +5,44 @@ import Loading from '../Loading'
 import { AddToolContext } from './ValDashboard'
 
 const FormAddTool = React.lazy(() => import('../FormComponent/AddTool'))
+const FormEditTool = React.lazy(() => import('../FormComponent/EditTool'))
+const FormPhotoEdit = React.lazy(() => import('../FormComponent/PhotoTool'))
 
 function Tool() {
 
-  const data = []
-  const [loadStatus, setLoadStatus] = useState(true)
-  const [search, setSearch] = useState('')
-  const [allData, setAllData] = useState([{'toolID':"123"}])
+  const [loadStatus, setLoadStatus] = useState(false)
+  const [dataNow, setDataNow] = useState(null)
+  const [allData, setAllData] = useState([
+   // {toolID:"123", toolName:"test", toolDes:"-", toolCount:5, toolPhoto:"ddd.png"},
+   // {toolID:"555", toolName:"test", toolDes:"-", toolCount:5, toolPhoto:"download.jpg"}
+  
+  ]) // dev
   
   const { forms, setPageForm } = useContext(AddToolContext)
 
   useEffect(() => {
-    setLoadStatus(false)
+    const data = []
+    setLoadStatus(true) // dev
     async function f() {
       const a = await fetch('./back-end/connect/tool.php')
       const b = await a.json()
       b.forEach(element => {
         data.push(element)
       });
-      setAllData(data)
-      createTable(allData)
+      setAllData(data) // dev
+      createTable(data) // dev
+      // console.log(allData)
       setLoadStatus(false)
     }
     f()
-    
   }, [])
+
+  useEffect(() => {
+    if (forms === 0) {
+      fData()
+    }
+  }, [forms])
+
 
   async function fData() {
     const af = []
@@ -39,17 +52,17 @@ function Tool() {
     bb.forEach(element => {
       af.push(element)
     });
-    setAllData(af)
-    createTable(af)
+    setAllData(af)// DEV
+    createTable(af) // DEV
     setLoadStatus(false)
   }
  
 
-  function createTable(allData) {
+  function createTable(allDatas) {
     
     const table = document.getElementById('table-tool')
     const qTable = document.querySelectorAll('#tool-contents')
-    
+   
     if (qTable) {
       qTable.forEach(element => {
         element.remove()
@@ -75,8 +88,8 @@ function Tool() {
     tr1.append(th1, th2, th3, th4, th5, th6)
     table.append(tr1)
 
-    if (allData.length > 0) {
-      allData.forEach(element => {
+    if (allDatas.length > 0) {
+      allDatas.forEach(element => {
 
         const tr = document.createElement('tr')
         const td1 = document.createElement('td')
@@ -88,20 +101,34 @@ function Tool() {
   
         const btnRe = document.createElement('button')
         const btnDel = document.createElement('button')
-  
+        const btnPho = document.createElement('button')
+
+        const img = document.createElement('img')
+        
+        img.src = `/back-end/connect/uploads/${element.toolPhoto}`
+        img.alt = element.toolPhoto
+
         tr.id = 'tool-contents'
         td1.innerHTML = element.toolID
         td2.innerHTML = element.toolName
         td3.innerHTML = element.toolDes
         td4.innerHTML = element.toolCount
-        td5.innerHTML = element.toolPhoto
+        td5.append(img)
         
-        btnRe.innerHTML = "Re"
-        btnDel.innerHTML = "Del"
+        btnPho.innerHTML = "Photo"
+        btnRe.innerHTML = "Edit"
+        btnDel.innerHTML = "Delete"
+
+        btnPho.id = element.toolID
+        btnPho.onclick = handlePhotoEdit
+
+        btnRe.id = element.toolID
+        btnRe.onclick = handleEditTool
+
         btnDel.id = element.toolID
         btnDel.onclick = handleDel
-  
-        td6.append(btnRe, btnDel)
+        
+        td6.append(btnRe, btnPho, btnDel)
   
         tr.append(td1, td2, td3, td4, td5, td6)
   
@@ -136,7 +163,7 @@ function Tool() {
       setLoadStatus(true)
       const a = await fetch(`./back-end/connect/delTool.php?data=${e.target.id}`)
       if (a.status === 200) {
-        alert('ลบข้อมูลสำเร็จ')
+       // alert('ลบข้อมูลสำเร็จ')
       }else {
         alert('ลบข้อมูลไม่สำเร็จ!')
       }
@@ -146,13 +173,14 @@ function Tool() {
   }
 
   const handleSearch = (e) => {
-   
+    const testD = allData
     const value = e.target.value
-    console.log('val: ', value)
+    // console.log('val: ', value)
     try {
-      const newAllTool = allData.filter((x)=>{
+      const newAllTool = testD.filter((x)=>{
         return Object.keys(x).some(k=>x[k].toLowerCase().includes(value.toLowerCase()))
       })
+      //console.log(newAllTool)
       createTable(newAllTool)
     }catch {
       const newAllTool = 0
@@ -177,7 +205,37 @@ function Tool() {
     }
   }
 
+  const handlePhotoEdit = (e) => { 
+    const qTable = document.querySelectorAll('#tool-contents')
+    if (qTable) {
+      qTable.forEach(element => {
+        element.remove()
+      });
+    }
+    const val = e.target.id
+    setDataNow(val)
+    setPageForm(3)
+  }
+
+  const handleEditTool = (e) => {
+    const qTable = document.querySelectorAll('#tool-contents')
+    if (qTable) {
+      qTable.forEach(element => {
+        element.remove()
+      });
+    }
+    const val = e.target.id
+    setDataNow(val)
+    setPageForm(2)
+  }
+ 
   const handleAddTool = () => {
+    const qTable = document.querySelectorAll('#tool-contents')
+    if (qTable) {
+      qTable.forEach(element => {
+        element.remove()
+      });
+    }
     setPageForm(1)
   }
 
@@ -192,11 +250,18 @@ function Tool() {
         </div>
       </div>
       <div className="tool-content">
-        <Suspense fallback={<Loading />}>
-          {(forms === 1) ? (<FormAddTool />) : ""}
-        </Suspense>
+        <div className="tool-form">
+          <Suspense fallback={<Loading />}>
+            {   (forms === 1) ? (<FormAddTool />) 
+              : (forms === 2) ? (<FormEditTool data={dataNow}/>) 
+              : (forms === 3) ? (<FormPhotoEdit data={dataNow}/>)
+              : "" }
+          </Suspense>
+        </div>
         {(loadStatus)?(<div className="tool-load">{<Loading />}</div>):""}
         <table id='table-tool'></table>
+        
+        
       </div>
     </div>
   )

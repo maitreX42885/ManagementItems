@@ -59,16 +59,18 @@
     margin-right: .5rem;
     height: 100%;
     width: 2rem;
-    color: #fff;
-    background-color: var(--colorSuccess);
+    color: var(--colorSuccess);
+    background-color: transparent;
     border-radius: 8px;
-    border: transparent;
+    border: 1.5px solid var(--colorSuccess);
     font-size: 1.2rem;
     transition: all 200ms ease-in-out;
 }
 .tool-search-container > input[type='button']:hover {
     cursor: pointer;
     filter: brightness(90%);
+    background-color: var(--colorSuccess);
+    color: #fff;
 }
 /* #tool-search::-webkit-search-cancel-button {
     color: var(--colorFont);
@@ -94,8 +96,18 @@ td, tr, th {
 }
 td {
     text-align: center;
+    vertical-align: middle;
+   
 }
-
+td:nth-last-child(1) {
+    width: 10%;
+}
+td:nth-child(1) {
+    width: 5%;
+}
+td:nth-child(5) {
+    width: 20%;
+}
 .tool-content > table {
     width: 100%;
     border-collapse: collapse;
@@ -104,6 +116,38 @@ td {
 
 td > button:hover {
     cursor: pointer;
+}
+#tool-contents > td > img {
+    width: 100%;
+    background-size: cover;
+    height: 5rem;
+    object-fit: cover;
+    
+}
+#tool-contents {
+    /* height: 2rem; */
+}
+#tool-contents > td > button {
+    border: transparent;
+    border-radius: 5px;
+    color: #fff;
+    margin-right: .2rem;
+    width: 2.5rem;
+    height: 1.4rem;
+}
+#tool-contents > td > button:hover {
+    filter: brightness(90%);
+    cursor: pointer;
+}
+#tool-contents > td > button:nth-child(1) {
+    background-color: var(--colorWarning);
+    color: #000;
+}
+#tool-contents > td > button:nth-child(2) {
+    background-color: var(--colorInfo);
+}
+#tool-contents > td > button:nth-child(3) {
+    background-color: var(--colorDanger);
 }
 /* tool-content */
 
@@ -116,12 +160,27 @@ td > button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #00000005;
+    
     z-index: 10;
     width: 100%;
     height: 100%;
+    
     
 }
 
 
 /* tool-load */
+
+
+/* tool form */
+
+.tool-form {
+    position: absolute;
+    width: 100%;
+    
+    
+}
+
+
+
+/* tool form */

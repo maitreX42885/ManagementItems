@@ -27,14 +27,35 @@ export const AddToolContext = React.createContext()
 
 export const AddToolProvider = ({ children }) => {
     const [forms , setForm] = useState(0)
+    const [formLend, setFormLend] = useState(0)
+    const [cart, setCart] = useState([])
+    const [check, setCheckk] = useState([])
 
     function setPageForm(val) {
         setForm(val)
     }
 
+    function addCart(xx) {
+        setCart(cart => [...cart, xx])
+    }
+    function setCheck(xc) {
+        setCheckk(check => [...check, xc])
+    }
+
+    function setPageFormLend(x) {
+        setFormLend(x)
+    }
+
     const funSetForm = {
         forms,
-        setPageForm
+        setPageForm,
+        formLend,
+        setPageFormLend,
+        cart,
+        addCart,
+        check,
+        setCheck
+       
     }
     return (
         <AddToolContext.Provider value={funSetForm}>

@@ -1,0 +1,127 @@
+
+.editTool-container {
+    position: relative;
+    width: 100%;
+    background-color: var(--colorDark1);
+    color: var(--colorFont);
+    animation: editTool 500ms ease-in-out;
+}
+
+@keyframes editTool {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+.edittool-close {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 5rem;
+    padding-top: 1rem;
+    
+}
+.edittool-close > div {
+    
+    color: var(--colorFont);
+    font-size: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.edittool-close > div:hover {
+    cursor: pointer;
+}
+
+
+
+/* edittool-header */
+
+.edittool-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* edittool-header */
+
+.edittool-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+.edittool-items {
+    position: relative;
+    margin-bottom: 1rem;
+    width: 50%;
+    max-width: 20rem;
+}
+.edittool-items > input {
+    outline: none;
+    width: 100%;
+    font-size: .85rem;
+    padding-left: .35rem;
+    height: 1.5rem;
+    transition: all 200ms ease-in-out;
+}
+.edittool-items > input:focus ~ label,
+.edittool-items > input:valid ~ label {
+    top: -1rem;
+    font-size: .75rem;
+    color: var(--colorFont);
+}
+.edittool-items > label {
+    position: absolute;
+    top: .25rem;
+    left: .25rem;
+    transition: all 200ms ease-in-out;
+    color: #808080;
+    font-size: .85rem;
+}
+
+.edittool-items > textarea {
+    outline: none;
+    resize: none;
+    width: 100%;
+    height: 100%;
+    font-size: .85rem;
+    padding: .35rem;
+}
+.edittool-items:nth-last-child(1){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.edittool-items > input[type='button'] {
+    width: auto;
+    background-color: var(--colorSuccess);
+    color: #fff;
+    border: transparent;
+    border-radius: 5px;
+    width: 5rem;
+    padding-left: 0;
+}
+.edittool-items > input[type='button']:hover {
+    filter: brightness(90%);
+    cursor: pointer;
+}
+
+
+
+.l-edittool {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    height: 100%;
+    left: 50%;
+    z-index: 99;
+    transform: translate(-50%, -50%);
+}
