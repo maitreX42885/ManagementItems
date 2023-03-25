@@ -4,12 +4,13 @@
     height: 100%;
     width: 100%;
     color: var(--colorFont);
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
     position: absolute;
+    grid-gap: 50px;
 }
 
 
@@ -24,7 +25,9 @@
     align-items: center;
     border-radius: 8px;
     transition: .3s ease-in-out;
+    
 }
+
 .contact-item > p {
     font-size: .85rem;
     transition: .2s ease-in-out;

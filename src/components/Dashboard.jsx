@@ -9,6 +9,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from 'react-icons/md';
 import Loading from './Loading'
 import { DashContext } from './DashboardComponent/ValDashboard';
+import logo from '../assets/patchon.svg'
 
 const DashLend = React.lazy(() => import('./DashboardComponent/Lend'));
 const DashReturn = React.lazy(() => import('./DashboardComponent/Return'));
@@ -39,9 +40,10 @@ function Dashboard() {
       localStorage.setItem("theme", "light")
       document.documentElement.style.setProperty('--colorFont', '#1a1a1a')
       document.documentElement.style.setProperty('--colorDark1', '#f2f2f2')
-      document.documentElement.style.setProperty('--colorDark2', '#c0c0c0')
+      document.documentElement.style.setProperty('--colorDark2', '#d6d6d6')
       document.documentElement.style.setProperty('--colorDark3', '#dadada')
       document.documentElement.style.setProperty('--shadow', 'rgba(0, 0, 0, 0.35) 0px 5px 25px')
+      document.documentElement.style.setProperty('--shadowSmall', 'rgba(0, 0, 0, 0.35) 0px 5px 15px')
     }else {
       localStorage.setItem("theme", "dark")
       document.documentElement.style.setProperty('--colorFont', '#fff')
@@ -49,6 +51,7 @@ function Dashboard() {
       document.documentElement.style.setProperty('--colorDark2', '#30363d')
       document.documentElement.style.setProperty('--colorDark3', '#0d1117')
       document.documentElement.style.setProperty('--shadow', 'rgba(255, 255, 255, 0.35) 0px 5px 25px')
+      document.documentElement.style.setProperty('--shadowSmall', 'rgba(255, 255, 255, 0.35) 0px 5px 15px')
     }
   }, [night])
 
@@ -114,6 +117,10 @@ function Dashboard() {
     setHam(!ham)
   }
 
+  const handleLogo = () => {
+    window.location.reload()
+  }
+
   return (
     <div>
       <div className="dash-container">
@@ -127,8 +134,8 @@ function Dashboard() {
         </div>
         <div className="dash-sidebar" id='dash-sidebar'>
           <div className="dash-logo">
-            <h1>Icon</h1>
-          </div>
+            <div><img src={logo} alt="logo.svg" onClick={handleLogo} title='ระบบยืม-คืนอุปกรณ์ ชมรมพัฒนาชนบท'/></div>
+          </div>  
           <div className="close-sidebar">
             <div onClick={btnSide}><BiArrowToLeft /></div>
           </div>
@@ -146,7 +153,7 @@ function Dashboard() {
         </div>
         <div className="dash-content">
           <div className="dash-header">
-            <p id='dash-header-title'><strong>Welcome</strong></p>
+            <p id='dash-header-title'><strong>ระบบยืม-คืนอุปกรณ์ ชมรมพัฒนาชนบท</strong></p>
             <div id="dash-header-mobile" onClick={hamClick}><h2><GiHamburgerMenu /></h2></div>
             <div className="mobile-item-container" id='mobile-item-container'>
               <div className="close-mobile" onClick={hamClick}><MdClose /></div>

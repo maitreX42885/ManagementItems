@@ -24,7 +24,7 @@ function Tool() {
     const data = []
     setLoadStatus(true) // dev
     async function f() {
-      const a = await fetch('./back-end/connect/tool.php')
+      const a = await fetch('./back-end/connect/fetchTool.php')
       const b = await a.json()
       b.forEach(element => {
         data.push(element)
@@ -47,7 +47,7 @@ function Tool() {
   async function fData() {
     const af = []
     setLoadStatus(true)
-    const aa = await fetch('./back-end/connect/tool.php')
+    const aa = await fetch('./back-end/connect/fetchTool.php')
     const bb = await aa.json()
     bb.forEach(element => {
       af.push(element)
@@ -78,10 +78,10 @@ function Tool() {
     const th6 = document.createElement('th')
 
     th1.innerHTML = "#"
-    th2.innerHTML = "Name"
-    th3.innerHTML = "Des"
-    th4.innerHTML = "Count"
-    th5.innerHTML = "Image"
+    th2.innerHTML = "ชื่ออุปกรณ์"
+    th3.innerHTML = "คำอธิบาย"
+    th4.innerHTML = "จำนวน"
+    th5.innerHTML = "รูปภาพ"
     th6.innerHTML = "Action"
 
     tr1.id = 'tool-contents'

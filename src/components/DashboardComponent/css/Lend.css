@@ -19,8 +19,8 @@
     width: 100%;
     justify-content: space-between;
     padding: 1rem 2rem;
-    top: 3rem;
-    z-index: 9;
+    top: 2.9rem;
+    z-index: 55;
 }
 
 .l-header-title, .l-header-tool, .l-header-tool > div {
@@ -67,6 +67,7 @@
     background-color: var(--colorDark1);
     transition: all 200ms ease-in-out;
     color: var(--colorDark1);
+    font-size: .75rem;
 }
 .l-header-search > input[type='search']:focus,
     .l-header-search > input[type='search']:valid {

@@ -35,7 +35,7 @@ function Lend() {
   useEffect(() => {
     setLoading(true)
     async function f() {
-      const a = await fetch('./back-end/connect/tool.php')
+      const a = await fetch('./back-end/connect/fetchTool.php')
       const b = await a.json()
       // console.log('b : ', b)
       b.forEach(element => {
