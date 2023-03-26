@@ -2,15 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { HiReceiptRefund } from 'react-icons/hi'
 import './css/Return.css'
 import Loading from '../Loading'
+import Swal from 'sweetalert2'
 
 function Return() {
   const [loading2, setLoading] = useState(false)
   const [item, setItem] = useState([
-    //{"bID":"3","studentID":"63413424","toolName":"Box","bCount":"3","bDate":"2023-03-24","bTime":"19:13:20","toolPhoto":"ddd.png","studentName":"werr"},
-    //{"bID":"5","studentID":"63413424","toolName":"Box","bCount":"3","bDate":"2023-03-24","bTime":"20:16:41","toolPhoto":"ddd.png","studentName":"werr"},
-    //{"bID":"6","studentID":"12324242","toolName":"mic","bCount":"3","bDate":"2023-03-24","bTime":"22:24:56","toolPhoto":"download.jpg","studentName":"ff"},
-    //{"bID":"7","studentID":"11231231","toolName":"Box","bCount":"4","bDate":"2023-03-24","bTime":"23:23:39","toolPhoto":"ddd.png","studentName":"dsaasd"},
-    //{"bID":"8","studentID":"12312312","toolName":"mic","bCount":"3","bDate":"2023-03-24","bTime":"23:48:51","toolPhoto":"download.jpg","studentName":"ad"}
+    //  {"bID":"3","studentID":"63413424","toolName":"Box","bCount":"3","bDate":"2023-03-24","bTime":"19:13:20","toolPhoto":"ddd.png","studentName":"werr"},
+    // {"bID":"5","studentID":"63413424","toolName":"Box","bCount":"3","bDate":"2023-03-24","bTime":"20:16:41","toolPhoto":"ddd.png","studentName":"werr"},
+    // {"bID":"6","studentID":"12324242","toolName":"mic","bCount":"3","bDate":"2023-03-24","bTime":"22:24:56","toolPhoto":"download.jpg","studentName":"ff"},
+    // {"bID":"7","studentID":"11231231","toolName":"Box","bCount":"4","bDate":"2023-03-24","bTime":"23:23:39","toolPhoto":"ddd.png","studentName":"dsaasd"},
+    // {"bID":"8","studentID":"12312312","toolName":"mic","bCount":"3","bDate":"2023-03-24","bTime":"23:48:51","toolPhoto":"download.jpg","studentName":"ad"},
+    // {"bID":"8","studentID":"12312312","toolName":"mic","bCount":"3","bDate":"2023-03-24","bTime":"23:48:51","toolPhoto":"download.jpg","studentName":"ad"},
+    // {"bID":"8","studentID":"12312312","toolName":"mic","bCount":"3","bDate":"2023-03-24","bTime":"23:48:51","toolPhoto":"download.jpg","studentName":"ad"},
+    // {"bID":"8","studentID":"12312312","toolName":"mic","bCount":"3","bDate":"2023-03-24","bTime":"23:48:51","toolPhoto":"download.jpg","studentName":"ad"},
+    // {"bID":"8","studentID":"12312312","toolName":"mic","bCount":"3","bDate":"2023-03-24","bTime":"23:48:51","toolPhoto":"download.jpg","studentName":"ad"},
+    // {"bID":"8","studentID":"12312312","toolName":"mic","bCount":"3","bDate":"2023-03-24","bTime":"23:48:51","toolPhoto":"download.jpg","studentName":"ad"}
   ])
 
   useEffect(() => {
@@ -89,6 +95,7 @@ function Return() {
       divv.id = 'tmp-re'
       divv.innerHTML = "ไม่พบข้อมูล"
       bodyReturn.append(divv)
+      
       setLoading(false)
     }
     const te = document.getElementById('tempL')
@@ -126,10 +133,21 @@ function Return() {
       createReturnTable(newAllTool3)
     }
   }
-
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
 
   const handleReturn = (e) => {
     // console.log(e.target.id)
+    
     setLoading(true)
     let xhr = new XMLHttpRequest();
     let url = "./back-end/connect/CommandReturn.php";
@@ -139,19 +157,31 @@ function Return() {
     xhr.open("POST", url, true);
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4 && xhr.status === 200) {
+        setLoading(false)
         let x = xhr.responseText
         if (x=="Success") {
-          alert('คืนอุปกรณ์สำเร็จ')
-          window.location.reload()
+          Toast.fire({
+            icon: 'success',
+            title: 'คืนอุปกรณ์สำเร็จ'
+          })
+          setTimeout(() => {
+            window.location.reload()
+          }, 3000);
         }else if (x=="Error") {
-          alert('คืนอุปกรณ์ไม่สำเร็จ')
+          Toast.fire({
+            icon: 'error',
+            title: 'คืนอุปกรณ์ไม่สำเร็จ'
+          })
         }else {
-          alert('ไม่พบข้อมูล')
+          Toast.fire({
+            icon: 'error',
+            title: 'ไม่พบข้อมูล'
+          })
         }
         setLoading(false)
       }else {
         let x = xhr.responseText
-        console.log("Error : ", x)
+        //console.log("Error : ", x)
         setLoading(false)
       }
       setLoading(false)

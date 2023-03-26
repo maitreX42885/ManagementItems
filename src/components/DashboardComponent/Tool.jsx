@@ -3,6 +3,8 @@ import { BsSearch } from 'react-icons/bs'
 import './css/Tool.css'
 import Loading from '../Loading'
 import { AddToolContext } from './ValDashboard'
+import Swal from 'sweetalert2'
+
 
 const FormAddTool = React.lazy(() => import('../FormComponent/AddTool'))
 const FormEditTool = React.lazy(() => import('../FormComponent/EditTool'))
@@ -163,11 +165,21 @@ function Tool() {
       setLoadStatus(true)
       const a = await fetch(`./back-end/connect/delTool.php?data=${e.target.id}`)
       if (a.status === 200) {
-       // alert('ลบข้อมูลสำเร็จ')
+        setLoadStatus(false)
+        Swal.fire({
+          icon: 'success',
+          title: 'ระบบ',
+          text: 'ลบอุปกรณ์สำเร็จ!'
+        })
       }else {
-        alert('ลบข้อมูลไม่สำเร็จ!')
+        setLoadStatus(false)
+        Swal.fire({
+          icon: 'error',
+          title: 'ระบบ',
+          text: 'ลบอุปกรณ์ไม่สำเร็จ!'
+        })
       }
-      setLoadStatus(false)
+      
       await fData()
     }
   }

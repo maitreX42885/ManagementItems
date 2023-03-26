@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { BiHistory } from 'react-icons/bi'
 import './css/HistoryTool.css'
 import Loading from '../Loading'
+import Swal from 'sweetalert2'
 
 function HistoryTool() {
 
@@ -11,11 +12,7 @@ function HistoryTool() {
     // {"bCount":"1","bDate":"2023-03-25","bTime":"03:50:33","returnDate":"2023-03-25","returnTime":"04:04:21","toolName":"mic","studentID":"55135151","studentName":"we","studentPhone":"535-235-2523","studentClass":"4","studentFaculty":"คณะพยาบาลศาสตร์"},
     // {"bCount":"1","bDate":"2023-03-25","bTime":"03:50:34","returnDate":"2023-03-25","returnTime":"04:05:06","toolName":"Box","studentID":"55135151","studentName":"we","studentPhone":"535-235-2523","studentClass":"4","studentFaculty":"คณะพยาบาลศาสตร์"},
     // {"bCount":"1","bDate":"2023-03-25","bTime":"03:54:56","returnDate":"2023-03-25","returnTime":"04:04:41","toolName":"mic","studentID":"53252352","studentName":"sdf","studentPhone":"341-241-2342","studentClass":"2","studentFaculty":"คณะศึกษาศาสตร์"},
-    // {"bCount":"1","bDate":"2023-03-25","bTime":"04:10:01","returnDate":"2023-03-25","returnTime":"04:12:48","toolName":"mic","studentID":"32523523","studentName":"sdd","studentPhone":"214-124-1241","studentClass":"6","studentFaculty":"คณะแพทยศาสตร์"},
-    // {"bCount":"3","bDate":"2023-03-25","bTime":"04:24:23","returnDate":"2023-03-25","returnTime":"04:24:45","toolName":"Box","studentID":"24515151","studentName":"we","studentPhone":"214-124-1241","studentClass":"3","studentFaculty":"คณะวิทยาศาสตร์การแพทย์"},
-    // {"bCount":"1","bDate":"2023-03-25","bTime":"04:25:07","returnDate":"2023-03-25","returnTime":"04:25:30","toolName":"Box","studentID":"12312312","studentName":"ad","studentPhone":"213-123-1231","studentClass":"2","studentFaculty":"คณะศึกษาศาสตร์"},
-    // {"bCount":"1","bDate":"2023-03-25","bTime":"04:28:51","returnDate":"2023-03-25","returnTime":"04:29:10","toolName":"Box","studentID":"23431413","studentName":"aadadad","studentPhone":"234-312-4123","studentClass":"3","studentFaculty":"คณะเภสัชศาสตร์"},
-    // {"bCount":"1","bDate":"2023-03-25","bTime":"04:33:35","returnDate":"2023-03-25","returnTime":"04:33:52","toolName":"Box","studentID":"12312312","studentName":"ad","studentPhone":"213-123-1231","studentClass":"2","studentFaculty":"คณะศึกษาศาสตร์"}
+
   ])
 
   useEffect(() => {
@@ -131,10 +128,18 @@ function HistoryTool() {
       const bbb = await a.text()
      
       if (bbb == "Success") {
-        alert('ลบรายการทั้งหมดสำเร็จ')
-        window.location.reload()
+        Swal.fire({
+          icon: 'success',
+          title: 'ลบรายการทั้งหมดสำเร็จ',
+        })
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000);
       } else {
-        alert('ลบรายการทั้งหมดไม่สำเร็จ')
+        Swal.fire({
+          icon: 'error',
+          title: 'ลบรายการทั้งหมดไม่สำเร็จ',
+        })
       }
     }
   }

@@ -4,6 +4,7 @@ import './css/addTool.css'
 import { MdClose } from 'react-icons/md'
 import { BsClipboardPlus } from 'react-icons/bs'
 import Loading from '../Loading'
+import Swal from 'sweetalert2'
 
 function AddTool() {
 
@@ -38,20 +39,38 @@ function AddTool() {
       xhr.onreadystatechange = function() {
        
         if (xhr.readyState === 4 && xhr.status === 200) {
+          setLoading(false)
           let x = xhr.responseText
             if (x == "id") {
-              alert('มี ID นี้อยู่ในระบบแล้ว')
+              Swal.fire({
+                icon: 'warning',
+                title: 'มี ID นี้อยู่ในระบบแล้ว',
+              })
             }
             if (x == "type") {
-              alert('ต้องเป็นไฟล์รูปภาพ .png, .jpeg, .jpg เท่านั้น')
+              
+              Swal.fire({
+                icon: 'warning',
+                title: 'ต้องเป็นไฟล์รูปภาพ .png, .jpeg, .jpg เท่านั้น',
+              })
             }
             if (x == "large") {
-              alert('รูปต้องมีขนาดน้อยกว่า 1MB.')
+              
+              Swal.fire({
+                icon: 'warning',
+                title: 'รูปต้องมีขนาดน้อยกว่า 1MB.',
+              })
             }
             if (x == "ok") {
-              alert('เพิ่มอุปกรณ์สำเร็จ')
+              
+              Swal.fire({
+                icon: 'warning',
+                title: 'เพิ่มอุปกรณ์สำเร็จ',
+              })
               setLoading(false)
-              setPageForm(0)
+              setTimeout(() => {
+                setPageForm(0)
+              }, 1000);
             }else {
               // console.log(x)
             }
@@ -63,7 +82,10 @@ function AddTool() {
       };
       xhr.send(formData);
     }else {
-      alert('กรุณากรอกข้อมูลให้ครบก่อนยืนยัน')
+      Swal.fire({
+        icon: 'info',
+        title: 'กรุณากรอกข้อมูลให้ครบ',
+      })
     }
   }
 

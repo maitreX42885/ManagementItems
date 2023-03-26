@@ -15,10 +15,16 @@ function Lend() {
   const {formLend, setPageFormLend, cart, addCart} = useContext(AddToolContext)
   const [item, setItem] = useState([
     //   {toolID:"123", toolName:"test", toolDes:"-", toolCount:5, toolPhoto:"ddd.png"},
-    //  {toolID:"555", toolName:"box", toolDes:"-", toolCount:5, toolPhoto:"download.jpg"},
-    // {toolID:"233", toolName:"mic", toolDes:"-", toolCount:5, toolPhoto:"ddd.png"},
-    //  {toolID:"14", toolName:"table", toolDes:"-", toolCount:0, toolPhoto:"ddd.png"},
-    // {toolID:"113", toolName:"5t", toolDes:"-", toolCount:5, toolPhoto:"ddd.png"}
+    //   {toolID:"555", toolName:"box", toolDes:"-", toolCount:5, toolPhoto:"download.jpg"},
+    //  {toolID:"233", toolName:"mic", toolDes:"-", toolCount:5, toolPhoto:"ddd.png"},
+    //   {toolID:"14", toolName:"table", toolDes:"-", toolCount:0, toolPhoto:"ddd.png"},
+    //  {toolID:"113", toolName:"5t", toolDes:"-", toolCount:5, toolPhoto:"ddd.png"},
+    //  {toolID:"113", toolName:"5t", toolDes:"-", toolCount:5, toolPhoto:"ddd.png"},
+    //  {toolID:"113", toolName:"5t", toolDes:"-", toolCount:5, toolPhoto:"ddd.png"},
+    //  {toolID:"113", toolName:"5t", toolDes:"-", toolCount:5, toolPhoto:"ddd.png"},
+    //  {toolID:"113", toolName:"5t", toolDes:"-", toolCount:5, toolPhoto:"ddd.png"},
+    //  {toolID:"113", toolName:"5t", toolDes:"-", toolCount:5, toolPhoto:"ddd.png"},
+    //  {toolID:"113", toolName:"5t", toolDes:"-", toolCount:5, toolPhoto:"ddd.png"}
   ])
 
   useEffect(() => {
@@ -29,6 +35,8 @@ function Lend() {
     }else {
       num.innerHTML = cart.length
     }
+    
+    createItemTable(item)
     //console.log("cart : ", cart)
   }, [cart])
 
@@ -105,17 +113,19 @@ function Lend() {
   
         toolDiv.append( btn)
         imgDiv.append(img, desDiv)
-  
         lItem.append(pDiv, imgDiv, numDiv, toolDiv)
         mainTable.append(lItem)
       });
+      document.getElementById('l-container').style.height = 'auto'
       setLoading(false)
     } else {
       const divv = document.createElement('div')
       divv.id = "l-items"
       divv.innerHTML = "ไม่พบข้อมูล"
       mainTable.append(divv)
+      document.getElementById('l-container').style.height = '100vh'
       setLoading(false)
+      
     }
     
   }
@@ -166,11 +176,17 @@ function Lend() {
     
   }
 
+
+
   const handleAdd = (e) => {
    // const fnum = document.getElementById(`f${e.target.value}`)
     const name = e.target.getAttribute('name')
     const id = e.target.value
    // console.log("F num : ", fnum.value)
+    document.getElementById('cart').style.animation = 'sh 200ms ease-in-out'
+    setTimeout(() => {
+      document.getElementById('cart').style.animation = undefined
+    }, 200);
     const d = {'toolID':id, 'toolName':name}
     // setRestItem(restItem => [...restItem, d])
     addCart(d)
@@ -184,7 +200,7 @@ function Lend() {
           <div className='l-header-search'>
             <input type="search" name="" id="" placeholder='Search' required onChange={sDE}/>
           </div>
-          <div onClick={openForm}>
+          <div onClick={openForm} id='cart'>
             <MdTrolley />
             <div id='lnum'>32</div>
           </div>

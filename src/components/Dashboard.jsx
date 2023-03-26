@@ -9,7 +9,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from 'react-icons/md';
 import Loading from './Loading'
 import { DashContext } from './DashboardComponent/ValDashboard';
-import logo from '../assets/patchon.svg'
+import logo from '../assets/logo.svg'
 
 const DashLend = React.lazy(() => import('./DashboardComponent/Lend'));
 const DashReturn = React.lazy(() => import('./DashboardComponent/Return'));

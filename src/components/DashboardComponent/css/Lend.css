@@ -170,9 +170,11 @@
 }
 #l-btn-t {
     background-color: var(--colorSuccess);
+    -webkit-appearance: none;
 }
 #l-btn-f {
     background-color: var(--colorDanger);
+    -webkit-appearance: none;
 }
 
 .l-toolbar > button:hover {
@@ -218,8 +220,21 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
+    top: 0%;
+    left: 0;
+    /* left: 50%;
+    transform: translate(-50%, -50%); */
+    z-index: 59;
+}
+
+@keyframes sh {
+    0% {
+        transform: translateX(-40%);
+    }
+    50% {
+        transform: translateX(40%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
 }

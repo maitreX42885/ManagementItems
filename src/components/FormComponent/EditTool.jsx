@@ -3,6 +3,7 @@ import './css/EditTool.css'
 import { MdClose } from 'react-icons/md'
 import { AddToolContext } from '../DashboardComponent/ValDashboard'
 import Loading from '../Loading'
+import Swal from 'sweetalert2'
 
 function EditTool(props) {
 
@@ -35,11 +36,20 @@ function EditTool(props) {
             setLoading(true)
             const a = await fetch(`./back-end/connect/reTool.php?id=${id}&name=${name}&des=${des}&count=${count}`)
             if (a.status == 200) {
-                alert('เปลี่ยนข้อมูลสำเร็จ')
-                setLoading(true)
-                setPageForm(0)
+                setLoading(false)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'เปลี่ยนข้อมูลสำเร็จ',
+                })
+                setTimeout(() => {
+                    setPageForm(0)
+                }, 1000);
+                
             }else {
-                alert('เปลี่ยนข้อมูลไม่สำเร็จ')
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'เปลี่ยนข้อมูลไม่สำเร็จ',
+                })
             }
         }
     }

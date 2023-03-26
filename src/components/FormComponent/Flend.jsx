@@ -3,6 +3,7 @@ import './css/Flend.css'
 import { MdClose } from 'react-icons/md'
 import { AddToolContext } from '../DashboardComponent/ValDashboard'
 import Loading from '../Loading'
+import Swal from 'sweetalert2'
 
 function Flend() {
 
@@ -134,10 +135,41 @@ function Flend() {
     }
 
     const handleClear = () => {
-        if (window.confirm('ต้องการลบอุปกรณ์ทั้งหมด ?')) {
-            window.location.reload()
-        }
+        Swal.fire({
+            title: 'คุณแน่ใจ?',
+            text: "ต้องการลบอุปกรณ์ที่เลือกทั้งหมด",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'Deleted!',
+                'อุปกรณ์ถูกลบแล้ว',
+                'success'
+              )
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1000);
+            }
+        })
+       
     }
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+    
 
     const handleConfirm = async () => {
         setLoading(true)
@@ -173,24 +205,39 @@ function Flend() {
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     let x = xhr.responseText
+                    setLoading(false)
                     // console.log("Flend (xhr) : ", x)
                     if (x[0]=="S") {
-                        alert('สำเร็จ')
-                        window.location.reload()
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'ระบบ',
+                            text: 'ยืมอุปกรณ์สำเร็จ!'
+                        })
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 1000);
                     }else {
-                        alert('จำนวนอุปกรณ์บางรายการคงเหลือไม่เพียงพอ')
-                        window.location.reload()
+                        Toast.fire({
+                            icon: 'warning',
+                            title: 'จำนวนอุปกรณ์บางรายการคงเหลือไม่เพียงพอ'
+                        })
                     }
                 }else {
                     let x = xhr.responseText
                     // console.log(x)
+                    setLoading(false)
                 }
-                setLoading(false)
+                
             }
             xhr.send(formData);
         } else {
-            alert('กรอกข้อมูลให้เรียบร้อย')
             setLoading(false)
+            Swal.fire({
+                icon: 'info',
+                title: 'ระบบ',
+                text: 'กรุณากรอกข้อมูลให้เรียบร้อย!'
+            })
+            
         }
     }
 
