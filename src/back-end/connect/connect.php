@@ -1,9 +1,9 @@
 <?php 
 
-    $servername = 'www.db4free.net';
-    $username = 'admin63413654';
-    $password = '123456789';
-    $dbname  = 'admin63413654';
+    $servername = '';
+    $username = '';
+    $dbname  = '';
+    $password = '';
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
